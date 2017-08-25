@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Auth::routes();
 Route::get('/change', 'ChangeController@index');
 Route::post('/postchange', 'ChangeController@post');
