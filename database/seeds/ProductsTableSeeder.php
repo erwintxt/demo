@@ -13,7 +13,7 @@ class ProductsTableSeeder extends Seeder
     {
       $faker = Faker\Factory::create('id_ID');
 
-      $limit = 60;
+      $limit = 3;
 
       for ($i = 0; $i < $limit; $i++) {
       \App\Product::insert([
@@ -21,30 +21,35 @@ class ProductsTableSeeder extends Seeder
             'product_name'    => 'bpromax',
             'supplier_name'   => 'hbnr',
             'price'           => '190000',
+            'id_type'         => 01,
             'created_at'      => \Carbon\Carbon::now('Asia/Jakarta')
           ],
           [
-            'product_name'    => 'fittomac',
+            'product_name'    => 'fittomax',
             'supplier_name'   => 'hbnr',
             'price'           => '145000',
+            'id_type'         => 01,
             'created_at'      => \Carbon\Carbon::now('Asia/Jakarta')
           ],
           [
             'product_name'    => 'maxiqplus',
             'supplier_name'   => 'hbnr',
             'price'           => '135000',
+            'id_type'         => 01,
             'created_at'      => \Carbon\Carbon::now('Asia/Jakarta')
           ],
           [
             'product_name'    => 'cpro 1lt',
             'supplier_name'   => 'rim',
             'price'           => '100000',
+            'id_type'         => 02,
             'created_at'      => \Carbon\Carbon::now('Asia/Jakarta')
           ],
           [
             'product_name'    => 'cpro 20lt',
             'supplier_name'   => 'rim',
             'price'           => '2000000',
+            'id_type'         => 02,
             'created_at'      => \Carbon\Carbon::now('Asia/Jakarta')
           ],
       ]);

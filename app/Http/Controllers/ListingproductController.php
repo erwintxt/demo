@@ -30,8 +30,15 @@ class ListingproductController extends Controller
         //return Datatables::of(Product::query())
 
         //alternatif 3
-        $product = Product::query();
+        $product = Product::all();
+        //Product::query();
+
+
         return Datatables::of($product)
+
+        ->editColumn('type_name', function ($product) {
+                        return $product->Type->type_name;
+                    })
         ->editColumn('price', function ($product) {
                         return number_format($product->price,2,',','.');
                     })
@@ -45,6 +52,7 @@ class ListingproductController extends Controller
             <button class="btn-sm btn-danger" type="button" style="border: none"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
         </form>-->')
         ->make(true);
+
     }
 
     public function editform(Request $request)

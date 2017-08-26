@@ -26,6 +26,7 @@
                 <thead>
                 <tr>
                   <th>ID</th>
+                  <th>Jenis</th>
                   <th>Nama Produk</th>
                   <th>Nama Supplier</th>
                   <th>Harga</th>
