@@ -7,6 +7,7 @@ use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use App\Product;
+use App\Type;
 use Session;
 
 class ListingproductController extends Controller
@@ -54,6 +55,37 @@ class ListingproductController extends Controller
         ->make(true);
 
     }
+
+    public function createProduct()
+      {
+          $data = Type::all();
+          return view('createproduct',compact('data'));
+      }
+
+      public function createpost(Request $request){
+        $rules = ['type' => 'required|numeric',
+                  'product_name' => 'required|string',
+                  'supplier_name' => 'required|string',
+                  'price' => 'required|numeric'];
+
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->fails()) {
+            return redirect('/dataproduct/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }else{
+                $data = new Product;
+                $data->id_type      = $request->input('type');
+                $data->product_name = $request->input('product_name');
+                $data->supplier_name= $request->input('supplier_name');
+                $data->price         = $request->input('price');
+                $data->save();
+                Session::flash('flash_message', 'Data Telah tersimpan bro!');
+                //return redirect()->back();
+                return redirect('/dataproduct/create');
+
+        }
+      }
 
     public function editform(Request $request)
       {

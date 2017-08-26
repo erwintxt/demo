@@ -21,6 +21,7 @@
               </div>
               <!-- /.box-header -->
               <div class="box-body">
+                <a href="/datauser/create" class="btn btn-primary">Tambah Data</a>
                 <table class="table" id="mytable">
 
                 <thead>

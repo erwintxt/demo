@@ -3,7 +3,7 @@
 @section('content')
 <section class="content-header">
   <h1>
-    Edit Product
+    Create Product
     <small>Form</small>
   </h1>
   <ol class="breadcrumb">
@@ -19,19 +19,36 @@
             <!-- general form elements -->
             <div class="box box-primary">
               <div class="box-header with-border">
-                <h3 class="box-title">Edit Product</h3>
+                <h3 class="box-title">Create Product</h3>
               </div>
               <!-- /.box-header -->
               <!-- form start -->
-              <form class="form-horizontal" method="POST" action="{{ url('/dataproduct/postedit') }}">
+              <form class="form-horizontal" method="POST" action="{{ url('/dataproduct/createpost') }}">
                   {{ csrf_field() }}
+
+                  <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
+                      <label for="type" class="col-md-4 control-label">Jenis</label>
+
+                      <div class="col-md-6">
+                          <!--<input id="type" type="text" class="form-control" name="type" value="{{ old('type') }}" required autofocus>-->
+                          <select name="type" class="form-control">
+                            @foreach($data as $item)
+                              <option value="{{ $item->id }}">{{ $item->type_name }}</option>
+                            @endforeach
+                          </select>
+                          @if ($errors->has('type'))
+                              <span class="help-block">
+                                  <strong>{{ $errors->first('type') }}</strong>
+                              </span>
+                          @endif
+                      </div>
+                  </div>
 
                   <div class="form-group{{ $errors->has('product_name') ? ' has-error' : '' }}">
                       <label for="name" class="col-md-4 control-label">Product Name</label>
 
                       <div class="col-md-6">
-                          <input id="name" type="text" class="form-control" name="product_name" value="{{ $data->product_name }}" required autofocus>
-                          <input id="id" type="hidden" class="form-control" name="id" value="{{ $data->id }}">
+                          <input id="name" type="text" class="form-control" name="product_name" value="{{ old('product_name') }}" required autofocus>
 
                           @if ($errors->has('product_name'))
                               <span class="help-block">
@@ -45,7 +62,7 @@
                       <label for="address" class="col-md-4 control-label">Supplier</label>
 
                       <div class="col-md-6">
-                          <input id="address" type="text" class="form-control" name="supplier_name" value="{{$data->supplier_name }}" required autofocus>
+                          <input id="address" type="text" class="form-control" name="supplier_name" value="{{old('supplier_name') }}" required autofocus>
 
                           @if ($errors->has('supplier_name'))
                               <span class="help-block">
@@ -59,7 +76,7 @@
                       <label for="telp" class="col-md-4 control-label">price</label>
 
                       <div class="col-md-6">
-                          <input id="telp" type="text" class="form-control" name="price" value="{{ $data->price }}" required autofocus>
+                          <input id="telp" type="text" class="form-control" name="price" value="{{ old('price') }}" required autofocus>
 
                           @if ($errors->has('price'))
                               <span class="help-block">
@@ -72,7 +89,7 @@
                   <div class="form-group">
                       <div class="col-md-8 col-md-offset-4">
                           <button type="submit" class="btn btn-primary">
-                              Change
+                              Submit
                           </button>
                           <a href="/dataproduct" class="btn btn-default">Kembali</a>
                       </div>

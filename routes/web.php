@@ -24,6 +24,8 @@ Route::post('/postprofil', 'ProfilController@post');
 
 Route::get('/datauser', 'ListinguserController@index');
 Route::get('/datauser/post', 'ListinguserController@dataUser');
+Route::get('/datauser/create', 'ListinguserController@createUser');
+Route::post('/datauser/createpost', 'ListinguserController@createpost');
 Route::get('/datauser/{id}/edit', 'ListinguserController@editform');
 Route::post('/datauser/postedit', 'ListinguserController@editpost');
 Route::get('/datauser/{id}/delete', 'ListinguserController@deleteform');
@@ -32,6 +34,8 @@ Route::post('/datauser/postdelete', 'ListinguserController@deletepost');
 
 Route::get('/dataproduct', 'ListingproductController@index');
 Route::get('/dataproduct/post', 'ListingproductController@dataProduct');
+Route::get('/dataproduct/create', 'ListingproductController@createProduct');
+Route::post('/dataproduct/createpost', 'ListingproductController@createpost');
 Route::get('/dataproduct/{id}/edit', 'ListingproductController@editform');
 Route::post('/dataproduct/postedit', 'ListingproductController@editpost');
 Route::get('/dataproduct/{id}/delete', 'ListingproductController@deleteform');

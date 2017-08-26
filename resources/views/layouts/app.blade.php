@@ -430,7 +430,7 @@
             },
             columns: [
             {data: 'id', name: 'id'},
-            {data: 'type_name', name: 'type_name'},
+            {data: 'type_name', name: 'type_name', 'searchable': false, 'orderable':false},
             {data: 'product_name', name: 'product_name'},
             {data: 'supplier_name', name: 'supplier_name'},
             {data: 'price', name: 'price'},

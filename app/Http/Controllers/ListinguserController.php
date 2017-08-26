@@ -37,12 +37,47 @@ class ListinguserController extends Controller
         </form>-->')
         ->make(true);
     }
+    public function createUser()
+      {
+          return view('createuser');
+      }
+
+      public function createpost(Request $request){
+        $rules = ['name' => 'required|string',
+                  'address' => 'required|string',
+                  'telp' => 'required|numeric',
+                  'email' => 'required|email',
+                  'password' => 'required|min:6',
+                  'password-confirmation' => 'required|min:6|same:password'];
+
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->fails()) {
+            return redirect('/datauser/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }else{
+                $data = new User;
+                $data->name   = $request->input('name');
+                $data->address= $request->input('address');
+                $data->telp   = $request->input('telp');
+                $data->email  = $request->input('email');
+                //$data->password= bcrypt($request->input['password']);
+                $data->password = bcrypt($request->input('password'));
+                $data->save();
+                Session::flash('flash_message', 'Data Telah tersimpan bro!');
+                //return redirect()->back();
+                return redirect('/datauser/create');
+
+        }
+      }
+
     public function editform(Request $request)
       {
           $data = User::select('id','name','address','telp','email')->where('id',$request->id)->first();
           //dd($data);
           return view('edituser',compact('data'));
       }
+
     public function editpost(Request $request){
       $rules = ['name' => 'required|string',
                 'address' => 'required|string',
